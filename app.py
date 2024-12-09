@@ -4,7 +4,9 @@ import pyperclip
 
 
 CLIPBOARD_INPUT = True
-
+with open('settings.json') as f:
+    data = json.load(f)
+    CLIPBOARD_INPUT = data['clipboard_input']
 
 def prompt_for_input():
     expression = input("Enter a unicode expression:\n")
@@ -28,6 +30,7 @@ def output_to_clipboard(parsed):
 class Parser:
     def __init__(self):
         self.mapping = mapping_read
+        
 
     def parse_to_latex(self, expression):
         # TODO: Rewrite continuous strings under \mathit{#} so their letters are written closer to one another
